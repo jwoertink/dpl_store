@@ -15,6 +15,12 @@
         <%= link_to('View Products', products_path) %>
         <span>&nbsp;|&nbsp;</span>
         <%= link_to('About DPL Store', about_path) %>
+        <span>&nbsp;|&nbsp;</span>
+        <% if user_signed_in? %>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+        <% else %>
+          <%= link_to('Login', new_user_session_path) %>
+        <% end %>
       </nav>
     </header>
     <%= show_notice_message %>

@@ -1,9 +1,11 @@
+<%= link_to('Create Product', new_admin_product_path) %>
 <h1>Showing <%= pluralize(@products.count, 'Product') %></h1>
 <ul id="products">
 <% @products.each do |product| %>
   <li class="<%= cycle('even', 'odd') %>">
-    <%= link_to(product.name, product_path(product.id)) %>
+    <%= link_to(product.name, admin_product_path(product.id)) %>
     <%= number_to_currency(product.price) %>
+    -- <%= link_to('edit', edit_admin_product_path(product.id)) %>
     Created <%= time_ago_in_words(product.created_at) %> ago
   </li>
 <% end %>

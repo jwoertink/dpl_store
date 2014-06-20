@@ -1,5 +1,4 @@
-class ProductsController < ApplicationController
-  before_action :authenticate_user!
+class Admin::ProductsController < AdminController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   # The index action
@@ -22,7 +21,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       flash[:notice] = 'Good job! You did it.'
-      redirect_to products_path
+      redirect_to admin_products_path
     else
       flash[:alert] = 'Bad job! You failed.'
       render :new
@@ -34,7 +33,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update_attributes(product_params)
-      redirect_to products_path
+      redirect_to admin_products_path
     else
       render :edit
     end
@@ -42,7 +41,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to products_path
+    redirect_to admin_products_path
   end
 
   private
